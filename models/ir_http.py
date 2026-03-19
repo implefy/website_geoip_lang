@@ -33,7 +33,7 @@ class IrHttp(models.AbstractModel):
             return super()._get_default_lang()
 
         lang_code = COUNTRY_LANG_MAP.get(country_code, DEFAULT_LANG_CODE)
-        nearest = cls.get_nearest_lang(lang_code)
+        nearest = request.env['ir.http'].get_nearest_lang(lang_code)
 
         if nearest:
             return request.env['res.lang']._get_data(code=nearest)
